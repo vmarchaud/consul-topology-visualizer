@@ -13,7 +13,7 @@ This tool is made to vizualise latency between consul nodes based on the [Coordi
 
 ## Inspiration
 
-Some people might recognize the similarity with [Golderpinger](https://www.consul.io/docs/internals/coordinates.html) which is indeed the tool that motivated me to do this one.
+Some people might recognize the similarity with [Golderpinger](https://github.com/bloomberg/goldpinger) which is indeed the tool that i used to kickstart my version, so big thanks you to them for open sourcing this tool in the first place.
 
 The first difference is that i only wanted to vizualise things and didn't want to actually get alerted nor get metrics from this tools. But it's pretty trivial so someone need it, just ask and i might add it.
 
