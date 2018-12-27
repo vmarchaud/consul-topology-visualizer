@@ -35,7 +35,7 @@ Note: It's the same environment variables as the CLI so it avoid you re-configur
 ## Notes
 
 I hacked this quickly during the holiday so it might not be the state of the art UX or code. Feel free to make a PR to implement the things that you want.
-
+I've built an image for deployment it into my production environment so if you want to re-use it: https://cloud.docker.com/repository/docker/vmarchaud/consul-topology
 
 ## More screenshots
 - https://i.imgur.com/j6v0iep.png
