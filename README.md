@@ -33,7 +33,6 @@ Note: It's the same environment variables as the CLI so it avoid you re-configur
 I hacked this quickly during the holiday so it might not be the state of the art UX or code. Feel free to make a PR to implement the things that you want.
 
 
-
-
-https://i.imgur.com/j6v0iep.png
-https://i.imgur.com/undefined.png
+## More screenshots
+- https://i.imgur.com/j6v0iep.png
+- https://i.imgur.com/pML1dIH.png
