@@ -1,11 +1,73 @@
 doctype html
-html(lang='en')
+html
   head
     meta(charset='utf-8')
-    title Force Layout with labels on edges
-    script(src='http://d3js.org/d3.v3.min.js', charset='utf-8')
-    script.
-      window.data = !{JSON.stringify(data)}
-    style(type='text/css').
+    meta(http-equiv='X-UA-Compatible', content='IE=edge')
+    meta(name='viewport', content='width=device-width, initial-scale=1')
+    // The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags
+    title Consul Topology
+    script(type='text/javascript', src='https://cdn.jsdelivr.net/lodash/4.14.0/lodash.min.js')
+    script(type='text/javascript', src='https://cdnjs.cloudflare.com/ajax/libs/sigma.js/1.2.1/sigma.min.js')
   body
+    | :
+    script(type='text/javascript', src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js')
+    script(type='text/javascript', src='https://cdnjs.cloudflare.com/ajax/libs/sigma.js/1.1.0/plugins/sigma.pathfinding.astar.min.js')
+    script(type='text/javascript', src='https://cdnjs.cloudflare.com/ajax/libs/sigma.js/1.1.0/plugins/sigma.plugins.animate.min.js')
+    script(type='text/javascript', src='https://cdnjs.cloudflare.com/ajax/libs/sigma.js/1.1.0/plugins/sigma.plugins.dragNodes.min.js')
+    script(type='text/javascript', src='https://cdnjs.cloudflare.com/ajax/libs/sigma.js/1.1.0/plugins/sigma.plugins.filter.min.js')
+    script(type='text/javascript', src='https://cdnjs.cloudflare.com/ajax/libs/sigma.js/1.1.0/plugins/sigma.plugins.neighborhoods.min.js')
+    script(type='text/javascript', src='https://cdnjs.cloudflare.com/ajax/libs/sigma.js/1.1.0/plugins/sigma.plugins.relativeSize.min.js')
+    script(type='text/javascript', src='https://cdnjs.cloudflare.com/ajax/libs/sigma.js/1.1.0/plugins/sigma.renderers.customEdgeShapes.min.js')
+    script(type='text/javascript', src='https://cdnjs.cloudflare.com/ajax/libs/sigma.js/1.1.0/plugins/sigma.renderers.customShapes.min.js')
+    script(type='text/javascript', src='https://cdnjs.cloudflare.com/ajax/libs/sigma.js/1.1.0/plugins/sigma.renderers.edgeLabels.min.js')
+    script(type='text/javascript', src='https://cdnjs.cloudflare.com/ajax/libs/sigma.js/1.1.0/plugins/sigma.renderers.parallelEdges.min.js')
+    script(type='text/javascript', src='https://cdnjs.cloudflare.com/ajax/libs/sigma.js/1.1.0/plugins/sigma.renderers.snapshot.min.js')
+    script(type='text/javascript', src='https://cdnjs.cloudflare.com/ajax/libs/sigma.js/1.1.0/plugins/sigma.statistics.HITS.min.js')
+    // Latest compiled and minified CSS
+    link(rel='stylesheet', href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css', integrity='sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u', crossorigin='anonymous')
+    // Optional theme
+    link(rel='stylesheet', href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css', integrity='sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp', crossorigin='anonymous')
+    // Latest compiled and minified JavaScript
+    script(src='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js', integrity='sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa', crossorigin='anonymous')
+    style(type='text/css').
+      body {
+        margin: 0;
+      }
+      #graph-container {
+        position: absolute;
+        top: 0px;
+        bottom: 0px;
+        left: 0px;
+        right: 0px;
+      }
+    nav.navbar.navbar-inverse.navbar-fixed-top
+      .container
+        .navbar-header
+          button.navbar-toggle.collapsed(type='button', data-toggle='collapse', data-target='#navbar', aria-expanded='false', aria-controls='navbar')
+            span.sr-only Toggle navigation
+            span.icon-bar
+          a.navbar-brand(href='#') Consul Topology
+        #navbar.collapse.navbar-collapse
+          ul.nav.navbar-nav
+            li.active
+              a(href='#') Graph
+            li
+              a(href='data') Raw
+          .navbar-form.navbar-left(role='search')
+            .form-group
+              // <input id="timeout" type="number" step="any" class="form-control" placeholder="5.0" value="5.0">
+            button#reload-graph.btn.btn-default reload
+    .container
+      #graph-container
+    #modal-window-code.modal.fade.bs-example-modal-lg(tabindex='-1', role='dialog', aria-labelledby='myLargeModalLabel')
+      .modal-dialog.modal-lg(role='document')
+        .modal-content
+          .modal-header
+            button.close(type='button', data-dismiss='modal', aria-label='Close')
+              span(aria-hidden='true') ×
+            h4#modal-title.modal-title title
+          #modal-body.modal-body
+            | body
+          .modal-footer
+            button.btn.btn-default(type='button', data-dismiss='modal') Close
     script(src='./script.js')

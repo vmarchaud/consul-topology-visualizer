@@ -1,0 +1,21 @@
+{
+  "compilerOptions": {
+    "target": "es6",
+    "outDir": "build/main",
+    "rootDirs": ["src"],
+    "moduleResolution": "node",
+    "module": "commonjs",
+    "declaration": true,
+    "importHelpers": true,
+    "inlineSourceMap": true,
+    "traceResolution": false,
+    "downlevelIteration": true,
+    "resolveJsonModule": true,
+    "removeComments": true,
+    "lib" : [
+      "es6"
+    ],
+    "baseUrl": "." // required for "paths"
+  },
+  "compileOnSave": false
+}

@@ -1,35 +1,31 @@
 
-// @ts-ignore
-import * as nodes from './dataset.json'
-import {distanceTo, coordinateFromNode} from './coordinate'
 import * as express from 'express'
-
-const edges = []
-for (let i = 0; i < nodes.length; i++) {
-  const currentNode = nodes[i]
-  for (let j = 0; j < nodes.length; j++) {
-    if (i === j) continue
-    const node = nodes[j]
-    edges.push({
-      source: i,
-      target: j,
-      distance: distanceTo(coordinateFromNode(currentNode), coordinateFromNode(node)) / 100
-    })
-  }
-}
-
-
-const data = {
-  nodes: nodes.map(node => {
-    return { name: node.Node }
-  }),
-  edges
-}
+import { request, Node, transformNodes } from './utils'
+import { consulURI } from './conf'
+import * as async from 'async'
 
 const app = express()
 app.set('view engine', 'pug')
 app.use(express.static('public'))
-app.get('/', (req, res) => res.render('index', { data }))
+
+app.get('/', (req, res) => res.render('index'))
+
+app.get('/data', async (req, res) => {
+  let data = await request(consulURI, '/v1/coordinate/nodes') as Array<any>
+  data = data.filter((a, index) => index < 10 && !a.Node.match(/ip-/))
+  const graphData = transformNodes(data)
+  const nodes = await async.map(graphData.nodes, async (node: Node, next) => {
+    const healthchecks = await request(consulURI, `/v1/health/node/${node.id}`) as Array<any>
+    node.metadata = {}
+    node.metadata.healthchecks = healthchecks
+    node.metadata.offline = healthchecks.find(check => check.CheckID === 'serfHealth').Status !== 'passing'
+    return next(null, node)
+  })
+  res.send({
+    nodes,
+    edges: graphData.edges
+  })
+})
 
 const port = process.env.PORT || 3000
 app.listen(port, () => console.log(`App listening on port ${port}!`))
