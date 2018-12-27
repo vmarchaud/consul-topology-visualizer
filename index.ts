@@ -12,7 +12,6 @@ app.get('/', (req, res) => res.render('index'))
 
 app.get('/data', async (req, res) => {
   let data = await request(consulURI, '/v1/coordinate/nodes') as Array<any>
-  data = data.filter((a, index) => index < 10 && !a.Node.match(/ip-/))
   const graphData = transformNodes(data)
   const nodes = await async.map(graphData.nodes, async (node: Node, next) => {
     const healthchecks = await request(consulURI, `/v1/health/node/${node.id}`) as Array<any>
