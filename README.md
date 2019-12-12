@@ -2,11 +2,6 @@
 
 This tool is made to vizualise latency between consul nodes based on the [Coordinate API](https://www.consul.io/docs/internals/coordinates.html) to compute the data.
 
-**Demo**: I've deployed a [demo there](https://consul-topology-demo.cloud.pm2.io/) if you want to checkout, note that it's use the demo cluster of hashicorp ([available here](https://demo.consul.io/))
-
-
-**Totally shameless promotion** : If you are looking for monitoring your NodeJS infrastructure, i work on [PM2 Enterprise](https://pm2.io/enterprise) which can help you, for more details send me an email: valentin at keymetrics dot io
-
 
 ![](https://i.imgur.com/j6v0iep.png)
 
